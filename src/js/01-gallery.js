@@ -4,8 +4,6 @@
 
 import { galleryItems } from './gallery-items.js';
 
-import simpleLightbox from 'simplelightbox';
-
 const galleryImages = (item) => {
     return `<li class="gallery__item">
   <a class="gallery__link" href="${item.original}">
