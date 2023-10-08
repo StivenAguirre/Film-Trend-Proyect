@@ -1,10 +1,13 @@
 // Add imports above this line
 // Change code below this line
 
-
 import { galleryItems } from './gallery-items.js';
+import SimpleLightbox from "simplelightbox";
 
-const galleryImages = (item) => {
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Tu código aquí
+  const galleryImages = (item) => {
     return `<li class="gallery__item">
   <a class="gallery__link" href="${item.original}">
     <img
@@ -19,29 +22,30 @@ const galleryImages = (item) => {
 }
 
 
-
-
-
 const itemContainer = document.querySelector(".gallery");
 for (const item of galleryItems) {
-    const newItem = galleryImages(item);
-    itemContainer.innerHTML += newItem;
+  const newItem = galleryImages(item);
+  itemContainer.innerHTML += newItem;
+}
 
- };
- itemContainer.addEventListener("click", (event) => {
+// Inicializa SimpleLightbox
+const lightbox = new SimpleLightbox('.gallery a');
+
+itemContainer.addEventListener("click", (event) => {
   event.preventDefault();
-      const instance = basicLightbox.create(`
-          <img src="${event.target.dataset.source}" alt="${event.target.alt}" />
-      `);
-      
-      instance.show();
-
-      const closeEsc = (event) => {
-          if (event.key === "Escape") {
-            instance.close();
-            document.removeEventListener("keydown", closeEsc);
-          }
-      };
-      document.addEventListener("keydown", closeEsc);
+  if (event.target.tagName === "IMG") {
+    // Abre SimpleLightbox
+    lightbox.open();
   }
-);
+});
+
+// Cierra SimpleLightbox con la tecla Escape
+const closeEsc = (event) => {
+  if (event.key === "Escape") {
+    lightbox.close();
+  }
+};
+document.addEventListener("keydown", closeEsc);
+});
+
+
