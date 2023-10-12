@@ -1,3 +1,5 @@
+import throttle from "lodash.throttle";
+
 const emailInput = document.querySelector("input");
 const messageTextarea = document.querySelector("textarea");
 const feedbackForm = document.querySelector("form");
@@ -14,24 +16,28 @@ function saveToLocalStorage() {
 emailInput.addEventListener("input", saveToLocalStorage);
 messageTextarea.addEventListener("input", saveToLocalStorage);
 
-window.addEventListener("load", function (e) {
-    const getLocalStorage = JSON.parse(localStorage.getItem("feedback-form-state"));
+function updateRepositorio(e){
+  const getLocalStorage = JSON.parse(localStorage.getItem("feedback-form-state"));
+  if(getLocalStorage === ""){
+      emailInput.value = "";
+      messageTextarea.value = "";
+  } else {
+      emailInput.value = getLocalStorage.email
+      messageTextarea.value = getLocalStorage.message
+  }
+} 
 
-if(getLocalStorage){
-    emailInput.value = getLocalStorage.email
-    messageTextarea.value = getLocalStorage.message
-}
-});
+window.addEventListener("load", updateRepositorio);
 
 feedbackForm.addEventListener("submit", function (e) {
     const getLocalStorage = JSON.parse(localStorage.getItem("feedback-form-state"));
-
-    if(getLocalStorage){
-        localStorage.removeItem("feedback-form-state")
-        emailInput.value = "";
-        messageTextarea.value = "";
-    }
+    const localStorageEmail = getLocalStorage.email
+    feedbackForm.reset();
+    e.preventDefault();
+    console.log(`{email = ${getLocalStorage.email}
+message = ${getLocalStorage.message}}`)
 })
 
+const updateRepositorioThrottle = () => throttle(updateRepositorio, 500); 
 
 
