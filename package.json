@@ -2,20 +2,20 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://StivenAguirre.github.io/goit-js-hw-08",
+  "homepage": "https://StivenAguirre.github.io/Film-Trend-Proyect",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-08/"
+    "build": "parcel build src/*.html --public-url /Film-Trend-Proyect/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/StivenAguirre/goit-js-hw-08.git"
+    "url": "git+https://github.com/StivenAguirre/Film-Trend-Proyect.git"
   },
   "keywords": [],
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/StivenAguirre/goit-js-hw-08/issues"
+    "url": "https://github.com/StivenAguirre/Film-Trend-Proyect/issues"
   },
   "dependencies": {
     "@vimeo/player": "^2.20.1",
